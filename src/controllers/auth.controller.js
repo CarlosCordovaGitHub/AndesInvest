@@ -6,29 +6,35 @@ import { createAccessToken } from "../libs/jwt.js";
 
 export const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, fullName, dateOfBirth, phoneNumber, address, cedula } = req.body;
 
     const userFound = await User.findOne({ email });
 
-    if (userFound)
+    if (userFound) {
       return res.status(400).json({
-        message: ["The email is already in use"],
+        message: ["El correo electrónico ya está en uso"],
       });
+    }
 
-    // hashing the password
+    // Hashing the password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // creating the user
+    // Creating the user
     const newUser = new User({
       username,
       email,
       password: passwordHash,
+      fullName,
+      dateOfBirth,
+      phoneNumber,
+      address,
+      cedula: Number(cedula), // Asegurarse de que cédula sea un número
     });
 
-    // saving the user in the database
+    // Saving the user in the database
     const userSaved = await newUser.save();
 
-    // create access token
+    // Create access token
     const token = await createAccessToken({
       id: userSaved._id,
     });
@@ -39,12 +45,24 @@ export const register = async (req, res) => {
       sameSite: "none",
     });
 
+
     res.json({
-      id: userSaved._id,
+      _id: userSaved._id,
       username: userSaved.username,
       email: userSaved.email,
+      createdAt: userSaved.createdAt,
+      updatedAt: userSaved.updatedAt,
+      fullName: userSaved.fullName,
+      dateOfBirth: userSaved.dateOfBirth,
+      phoneNumber: userSaved.phoneNumber,
+      lastLogin: userSaved.lastLogin,
+      loginAttempts: userSaved.loginAttempts,
+      address: userSaved.address,
+      status: userSaved.status,
+      cedula: userSaved.cedula, // Devolver la cédula en la respuesta
     });
   } catch (error) {
+    console.error(error); // Imprime el error en la consola para debug
     res.status(500).json({ message: error.message });
   }
 };
@@ -54,17 +72,26 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const userFound = await User.findOne({ email });
 
-    if (!userFound)
+    if (!userFound) {
       return res.status(400).json({
-        message: ["The email does not exist"],
-      });
-
-    const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch) {
-      return res.status(400).json({
-        message: ["The password is incorrect"],
+        message: ["El correo electrónico no existe"],
       });
     }
+
+    const isMatch = await bcrypt.compare(password, userFound.password);
+
+    if (!isMatch) {
+      userFound.loginAttempts = (userFound.loginAttempts || 0) + 1;
+      await userFound.save();
+      return res.status(400).json({
+        message: ["La contraseña es incorrecta"],
+      });
+    }
+
+    userFound.loginAttempts = 0;
+    await userFound.save();
+    userFound.lastLogin = Date.now();
+    await userFound.save();
 
     const token = await createAccessToken({
       id: userFound._id,
@@ -83,6 +110,7 @@ export const login = async (req, res) => {
       email: userFound.email,
     });
   } catch (error) {
+    console.error(error); // Imprime el error en la consola para debug
     return res.status(500).json({ message: error.message });
   }
 };
