@@ -7,3 +7,4 @@ export const MONGODB_URI =
   
 export const TOKEN_SECRET = process.env.TOKEN_SECRET || "yoursecret";
 
+export const FRONTEND_URL = process.env.FRONTEND_URL || "https://andes-invest.vercel.app/";
