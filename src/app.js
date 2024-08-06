@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors(
   {
-    origin:["https://andes-invest.vercel.app/"],
+    origin:["https://andes-invest.vercel.app"],
     methods: ["POST","GET"],
     credential: true
   }
