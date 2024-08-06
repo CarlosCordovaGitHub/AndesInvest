@@ -38,6 +38,7 @@
     "sib-api-v3-sdk": "^8.5.0",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5",
+    "vercel": "^35.2.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {
