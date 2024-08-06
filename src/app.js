@@ -12,13 +12,12 @@ import { FRONTEND_URL } from "./config.js";
 
 const app = express();
 
-app.use(cors(
-  {
-    origin:["https://andes-invest.vercel.app"],
-    methods: ["POST","GET"],
-    credential: true
-  }
-));
+app.use(
+  cors({
+    credentials: true,
+    origin: FRONTEND_URL,
+  })
+);
 
 app.use(express.json());
 app.use(morgan("dev"));
