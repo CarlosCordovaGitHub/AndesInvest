@@ -1,10 +1,7 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "*.js",
-      "use": "@vercel/node"
-    }
+    { "src": "index.js", "use": "@vercel/node" }
   ],
   "routes": [
     {
@@ -12,8 +9,25 @@
       "dest": "/api/auth/$1"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/tasks/(.*)",
+      "dest": "/api/tasks/$1"
+    },
+    {
+      "src": "/api/accounts/(.*)",
+      "dest": "/api/accounts/$1"
+    },
+    {
+      "src": "/api/transfers/(.*)",
+      "dest": "/api/transfers/$1"
+    },
+    {
+      "src": "/api/service-bills/(.*)",
+      "dest": "/api/service-bills/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
     }
   ]
 }
+
