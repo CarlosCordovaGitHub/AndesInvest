@@ -1,36 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecovery } from '../context/recoveryContext'; // Importa el contexto de recuperación
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { forgotPassword } = useRecovery(); // Utiliza la función del contexto de recuperación
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/forgot-password', { // Cambiar a 4000
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        navigate('/verify-code', { state: { email } });
-      } else if (response.status === 404) {
-        setError('Correo no encontrado');
-      } else {
-        setError('Error al enviar el correo');
-      }
+      await forgotPassword(email);
+      navigate('/verify-code', { state: { email } });
     } catch (error) {
       console.error('Error:', error);
-      setError('Error al enviar el correo');
+      setError('Correo incorrecto o inexistente, reintentar');
     }
   };
-
+//Holaa
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
@@ -46,6 +35,7 @@ const ForgotPasswordPage = () => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              style={{ color: 'black' }}
             />
           </div>
           <button type="submit" className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-400 transition-colors">

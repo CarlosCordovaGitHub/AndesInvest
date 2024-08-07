@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useAuth } from '../context/authContext';
+import { useUser } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ const CambiarContraseña = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const { user, logout } = useAuth();
+    const { changePassword } = useUser();
     const navigate = useNavigate();
 
     const newPassword = watch("newPassword", "");
@@ -25,27 +26,22 @@ const CambiarContraseña = () => {
     const onSubmit = async (data) => {
         try {
             const userId = obtenerUserId();
-            const response = await axios.post('http://localhost:4000/change-password', {
-                userId,
-                currentPassword: data.currentPassword,
-                newPassword: data.newPassword
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': '*/*'
-                }
-            });
-            setSuccessMessage('Contraseña actualizada con éxito. Cerrando sesión...');
-            setErrorMessage('');
-            
-            // Esperar un poco antes de cerrar la sesión para que el usuario pueda ver el mensaje de éxito
-            setTimeout(() => {
-                logout(); // Cerrar sesión
-                navigate('/'); // Redirigir al usuario a la página principal
-            }, 2000);
+            const response = await changePassword(data.currentPassword, data.newPassword, userId);
+            if (response.status === 200) {
+                setSuccessMessage('Contraseña actualizada con éxito. Cerrando sesión...');
+                setErrorMessage('');
+                setTimeout(() => {
+                    logout(); // Cerrar sesión
+                    navigate('/'); // Redirigir al usuario a la página principal
+                }, 2000);
+            }
         } catch (error) {
             console.error(error);
-            setErrorMessage('Contraseña actual incorrecta. Reintentar.');
+            if (error.response && error.response.status === 400) {
+                setErrorMessage('Contraseña actual incorrecta. Reintentar.');
+            } else {
+                setErrorMessage('Error al cambiar la contraseña.');
+            }
             setSuccessMessage('');
         }
     };

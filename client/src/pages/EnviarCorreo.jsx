@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext'; // Asegúrate de importar tu contexto de autenticación
+import { useRecovery } from '../context/recoveryContext'; // Importa el contexto de recuperación
 
 const EnviarCorreo = () => {
   const { user } = useAuth(); // Obtener el usuario autenticado
+  const { sendSupportEmail } = useRecovery(); // Utiliza la función del contexto de recuperación
   const [subject, setSubject] = useState('Errores en cuentas'); // Valor por defecto
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
@@ -67,18 +69,10 @@ const EnviarCorreo = () => {
     localStorage.setItem('timeLeft', 60);
 
     try {
-      const response = await fetch('http://localhost:4000/send-support-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: user.email, subject, message }), // Usar el correo del usuario autenticado
-      });
+      const response = await sendSupportEmail(user.email, subject, message);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setResponse(data.message);
+      if (response.status == 200) {
+        setResponse(response.message);
         setError('');
         setSubject('Errores en cuentas'); // Resetear el asunto al valor por defecto
         setMessage(''); // Limpiar el mensaje
@@ -89,7 +83,7 @@ const EnviarCorreo = () => {
 
         setTimeLeft(60); // 1 minuto de espera
       } else {
-        setError(data.message || 'Error al enviar el correo');
+        setError(response.message || 'Error al enviar el correo');
         setResponse('');
         setIsDisabled(false);
         localStorage.removeItem('timeLeft');
@@ -112,7 +106,11 @@ const EnviarCorreo = () => {
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-blue-500 mb-4">Asistencia Técnica</h2>
         {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
-        {response && <p style={{ color: 'green', marginBottom: '1rem' }}>{response}</p>}
+        {response && (
+          <div className="success-message">
+            {response}
+          </div>
+        )}
         <p style={{ marginBottom: '1rem' }}>
           Puede enviar hasta 3 quejas por día. Ha enviado {complaintsCount} quejas hoy.
         </p>
@@ -185,6 +183,17 @@ const EnviarCorreo = () => {
           </button>
         </form>
       </div>
+      <style jsx>{`
+        .success-message {
+          background-color: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+          padding: 10px;
+          border-radius: 5px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      `}</style>
     </div>
   );
 };

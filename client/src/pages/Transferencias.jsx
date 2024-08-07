@@ -1,21 +1,21 @@
-// Transferencias.jsx
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../context/accountContext";
 import { useTransfer } from "../context/transferContext";
 import { useAuth } from "../context/authContext";
+import { useRecovery } from "../context/recoveryContext"; // Importa el contexto de recuperación
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Label, Input, Button } from "../components/ui";
-import axios from "axios";
 
 const Transferencias = () => {
   const { register, handleSubmit, formState: { errors }, setError, clearErrors, setValue, watch } = useForm();
   const { accounts, fetchAccounts, getAccountHolder } = useAccount();
   const { createTransfer } = useTransfer();
   const { user } = useAuth();
+  const { sendVerificateTransactionCode } = useRecovery(); // Utiliza la función del contexto de recuperación
   const navigate = useNavigate();
   const [selectedAccount, setSelectedAccount] = useState("");
   const [isOwnAccount, setIsOwnAccount] = useState(false);
@@ -73,7 +73,7 @@ const Transferencias = () => {
 
   const sendVerificationCode = async () => {
     try {
-      await axios.post('http://localhost:4000/send-verificate-transaction-code', { email: user.email });
+      await sendVerificateTransactionCode(user.email);
       setIsCodeSent(true);
       setTimer(60);
     } catch (error) {
@@ -124,7 +124,7 @@ const Transferencias = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/send-verificate-transaction-code', { email: user.email, code: data.confirmationCode });
+      const response = await sendVerificateTransactionCode(user.email, data.confirmationCode);
       if (response.data === 'Código verificado correctamente') {
         await createTransfer(transferData);
         setShowSuccessModal(true);
@@ -135,10 +135,17 @@ const Transferencias = () => {
         });
       }
     } catch (error) {
-      setError("confirmationCode", {
-        type: "manual",
-        message: "Código de verificación incorrecto o expirado.",
-      });
+      if (error.response && error.response.status === 400) {
+        setError("confirmationCode", {
+          type: "manual",
+          message: "Código de verificación incorrecto o expirado.",
+        });
+      } else {
+        setError("confirmationCode", {
+          type: "manual",
+          message: "Error al verificar el código.",
+        });
+      }
       console.error(error);
     }
   };

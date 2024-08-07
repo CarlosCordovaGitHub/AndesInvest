@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/authContext';
+import { useRecovery } from '../context/recoveryContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Message, Button, Input, Label } from '../components/ui';
 import { useForm } from 'react-hook-form';
 import { registerSchema } from '../schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 
 function RegisterPage() {
   const { errors: registerErrors, isAuthenticated } = useAuth();
+  const { sendVerificationCode } = useRecovery();
   const {
     register,
     handleSubmit,
@@ -17,6 +18,8 @@ function RegisterPage() {
     resolver: zodResolver(registerSchema),
   });
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = async (value) => {
     const userData = {
@@ -32,10 +35,14 @@ function RegisterPage() {
     };
 
     try {
-      await axios.post('http://localhost:4000/send-verification-code', { email: userData.email });
+      await sendVerificationCode(userData.email);
+      setSuccessMessage('Código de verificación enviado a tu correo electrónico.');
+      setErrorMessage('');
       navigate('/verify-code', { state: { email: userData.email, userData, isRegister: true } });
     } catch (error) {
       console.error('Error sending verification code:', error);
+      setErrorMessage('Error al enviar el código de verificación. Por favor, intenta de nuevo.');
+      setSuccessMessage('');
     }
   };
 
@@ -53,6 +60,12 @@ function RegisterPage() {
           ))}
           <h1 className="text-3xl font-bold text-indigo-900 mb-4">Regístrate</h1>
           <p className="text-black mb-6">Para continuar, necesitamos que ingreses tu información para crear una cuenta.</p>
+          {errorMessage && <p style={{ color: 'red', marginBottom: '1rem' }}>{errorMessage}</p>}
+          {successMessage && (
+            <div className="success-message">
+              {successMessage}
+            </div>
+          )}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-black">Nombre de Usuario:</label>
@@ -208,6 +221,16 @@ function RegisterPage() {
       <style jsx>{`
         body {
           background-color: #FFF;
+        }
+
+        .success-message {
+          background-color: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+          padding: 10px;
+          border-radius: 5px;
+          text-align: center;
+          margin-bottom: 20px;
         }
       `}</style>
     </div>

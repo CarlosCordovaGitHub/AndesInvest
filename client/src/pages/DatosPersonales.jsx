@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/authContext'; // Asegúrate de importar tu contexto de autenticación
+import { useAuth } from '../context/authContext'; // Importa tu contexto de autenticación
+import { useUser } from '../context/userContext'; // Importa el contexto de usuario
 
 const DatosPersonales = () => {
   const { user } = useAuth(); // Obtener el usuario autenticado
-  const [userData, setUserData] = useState(null);
+  const { fetchUserData, updateUserData, userData } = useUser(); // Utiliza las funciones del contexto de usuario
   const [editableData, setEditableData] = useState({
     phoneNumber: '',
     address: ''
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`http://localhost:4000/api/get-user-data/${user.id}`);
-        if (!response.ok) {
-          throw new Error('Error al recuperar los datos del usuario');
+    if (!isEditing && user) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await fetchUserData(user.id);
+          setEditableData({
+            phoneNumber: response.data.phoneNumber || '',
+            address: response.data.address || ''
+          });
+        } catch (error) {
+          console.error('Error al recuperar los datos del usuario:', error);
+          setError('Error al recuperar los datos del usuario.');
         }
-        const data = await response.json();
-        setUserData(data);
-        setEditableData({
-          phoneNumber: data.phoneNumber,
-          address: data.address
-        });
-      } catch (error) {
-        console.error('Error al recuperar los datos del usuario:', error);
-      }
-    };
+      };
 
-    if (user) {
-      fetchUserData();
+      fetchUserDetails();
     }
-  }, [user]);
+  }, [user, fetchUserData, isEditing]);
 
   const getInitials = (fullName) => {
+    if (!fullName) return ''; // Manejo de valores nulos o indefinidos
     const nameParts = fullName.split(' ');
     if (nameParts.length === 4) {
       return `${nameParts[0][0]}${nameParts[2][0]}`;
@@ -45,6 +45,7 @@ const DatosPersonales = () => {
   };
 
   const formatPhoneNumber = (phoneNumber) => {
+    if (!phoneNumber) return ''; // Manejo de valores nulos o indefinidos
     if (phoneNumber.startsWith('+593')) {
       return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(4)}`;
     } else {
@@ -84,30 +85,13 @@ const DatosPersonales = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/update-user-data/${user.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(editableData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al actualizar la información del usuario');
-      }
-
-      const data = await response.json();
-      setUserData((prevData) => ({
-        ...prevData,
-        phoneNumber: editableData.phoneNumber,
-        address: editableData.address,
-        modifiedAt: new Date().toISOString()
-      }));
+      await updateUserData(user.id, editableData);
       setIsEditing(false);
-      alert(data.message); // Mostrar el mensaje de éxito del servidor
+      await fetchUserData(user.id); // Volver a cargar los datos desde la base de datos
+      setSuccessMessage('Información actualizada correctamente');
     } catch (error) {
       console.error('Error al actualizar la información del usuario:', error);
-      alert('Error al actualizar la información del usuario.');
+      setError('Error al actualizar la información del usuario.');
     }
   };
 
@@ -117,6 +101,12 @@ const DatosPersonales = () => {
 
   return (
     <div className="user-profile">
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
+      )}
       <div className="user-header">
         <div className="user-avatar">
           <span>{getInitials(userData.fullName)}</span> {/* Mostrar las iniciales calculadas */}
@@ -187,7 +177,14 @@ const DatosPersonales = () => {
       <div className="button-container">
         <button
           className="update-button"
-          onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
+          onClick={() => {
+            if (isEditing) {
+              handleSave();
+            } else {
+              setIsEditing(true);
+              setSuccessMessage(''); // Limpiar el mensaje de éxito al entrar en modo edición
+            }
+          }}
         >
           {isEditing ? 'Guardar Cambios' : 'Actualizar Información'}
         </button>
@@ -304,6 +301,16 @@ const DatosPersonales = () => {
           margin-top: 1.5rem;
           text-align: center;
           color: #888;
+        }
+
+        .success-message {
+          background-color: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+          padding: 10px;
+          border-radius: 5px;
+          text-align: center;
+          margin-bottom: 20px;
         }
       `}</style>
     </div>
