@@ -9,8 +9,8 @@
     { "src": "/api/accounts/(.*)", "dest": "/src/routes/account.routes.js" },
     { "src": "/api/transfers/(.*)", "dest": "/src/routes/transfer.routes.js" },
     { "src": "/api/service-bills/(.*)", "dest": "/src/routes/serviceBill.routes.js" },
-    { "src": "/api/users/(.*)", "dest": "/src/routes/user.routes.js" },  
-    { "src": "/api/recovery/(.*)", "dest": "/src/routes/recovery.routes.js" },  
+    { "src": "/api/users/(.*)", "dest": "/src/routes/user.routes.js" },
+    { "src": "/api/recovery/(.*)", "dest": "/src/routes/recovery.routes.js" },
     { "src": "/(.*)", "dest": "/src/index.js" }
   ]
 }
