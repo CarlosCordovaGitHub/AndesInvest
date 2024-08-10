@@ -82,7 +82,7 @@ export function Navbar() {
               onMouseEnter={() => setIsServicesMenuOpen(true)}
               onMouseLeave={() => setIsServicesMenuOpen(false)}
             >
-              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Pagos y recargas</span>
+              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Pagos</span>
               {isServicesMenuOpen && (
                 <ul
                   className="absolute left-0 bg-white text-black mt-1 py-2 w-48 shadow-lg rounded-lg z-50"
@@ -91,9 +91,6 @@ export function Navbar() {
                 >
                   <li className="hover:bg-gray-200">
                     <Link to="/service-bills" className="block px-4 py-2">Pago de servicios básicos</Link>
-                  </li>
-                  <li className="hover:bg-gray-200">
-                    <Link to="/recargas-moviles" className="block px-4 py-2">Recargas móviles</Link>
                   </li>
                 </ul>
               )}
