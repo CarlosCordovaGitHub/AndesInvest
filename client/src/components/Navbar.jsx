@@ -12,10 +12,14 @@ export function Navbar() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-800 w-full my-3 flex justify-between py-5 px-10 rounded-lg relative z-50">
+    <nav className="bg-blue-800 w-full my-3 flex flex-wrap items-center justify-between py-5 px-5 md:px-10 rounded-lg relative z-50">
       <div className="flex items-center space-x-4">
-        <img src="public/image.png" alt="Logo" className="h-12 w-13 rounded-lg shadow-lg" />
-        <h1 className="text-2xl font-bold text-white">
+        <img 
+          src="public/image.png" 
+          alt="Logo" 
+          className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 rounded-lg shadow-lg" 
+        />
+        <h1 className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold text-white">
           <Link to={isAuthenticated ? "/tasks" : "/"}>AndesInvest</Link>
         </h1>
       </div>
@@ -40,7 +44,7 @@ export function Navbar() {
           </svg>
         </button>
       </div>
-      <ul className={`md:flex md:flex-wrap gap-x-10 text-white text-lg ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+      <ul className={`md:flex md:flex-row flex-col w-full md:w-auto gap-y-2 md:gap-x-5 md:gap-x-10 text-white text-sm sm:text-base md:text-lg lg:text-xl ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
         {isAuthenticated ? (
           <>
             <li
@@ -55,20 +59,20 @@ export function Navbar() {
                   onMouseEnter={() => setIsAccountMenuOpen(true)}
                   onMouseLeave={() => setIsAccountMenuOpen(false)}
                 >
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/saldo">Saldo</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/saldo" className="block px-4 py-2">Saldo</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/transferencias">Transferencias</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/transferencias" className="block px-4 py-2">Transferencias</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/paypal">Paypal</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/paypal" className="block px-4 py-2">Paypal</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/crearcuenta">Crear cuenta</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/crearcuenta" className="block px-4 py-2">Crear cuenta</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/transacciones">Transacciones</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/transacciones" className="block px-4 py-2">Transacciones</Link>
                   </li>
                 </ul>
               )}
@@ -85,11 +89,11 @@ export function Navbar() {
                   onMouseEnter={() => setIsServicesMenuOpen(true)}
                   onMouseLeave={() => setIsServicesMenuOpen(false)}
                 >
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/service-bills">Pago de servicios básicos</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/service-bills" className="block px-4 py-2">Pago de servicios básicos</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/recargas-moviles">Recargas móviles</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/recargas-moviles" className="block px-4 py-2">Recargas móviles</Link>
                   </li>
                 </ul>
               )}
@@ -106,14 +110,14 @@ export function Navbar() {
                   onMouseEnter={() => setIsProfileMenuOpen(true)}
                   onMouseLeave={() => setIsProfileMenuOpen(false)}
                 >
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/DatosPersonales">Datos personales</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/DatosPersonales" className="block px-4 py-2">Datos personales</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/configuracion-cuenta">Configuración de la cuenta</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/configuracion-cuenta" className="block px-4 py-2">Configuración de la cuenta</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/cambiarcontra">Cambiar Contraseña</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/cambiarcontra" className="block px-4 py-2">Cambiar Contraseña</Link>
                   </li>
                 </ul>
               )}
@@ -130,20 +134,20 @@ export function Navbar() {
                   onMouseEnter={() => setIsHelpMenuOpen(true)}
                   onMouseLeave={() => setIsHelpMenuOpen(false)}
                 >
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/Chat">Chat en Vivo</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/Chat" className="block px-4 py-2">Chat en Vivo</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/enviar-correo">Envíanos un correo</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/enviar-correo" className="block px-4 py-2">Envíanos un correo</Link>
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <Link to="/canales-digitales">Canales Digitales</Link>
+                  <li className="hover:bg-gray-200">
+                    <Link to="/canales-digitales" className="block px-4 py-2">Canales Digitales</Link>
                   </li>
                 </ul>
               )}
             </li>
             <li>
-              <Link to="/" onClick={() => logout()} className="hover:bg-red-700 bg-red-600 px-3 py-1 rounded">
+              <Link to="/" onClick={() => logout()} className="hover:bg-red-700 bg-red-600 px-3 py-1 rounded block">
                 Cerrar Sesión
               </Link>
             </li>

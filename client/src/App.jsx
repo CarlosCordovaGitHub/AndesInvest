@@ -29,6 +29,7 @@ import DatosPersonales from "./pages/DatosPersonales";
 import EnviarCorreo from "./pages/EnviarCorreo";
 import ServiceBillComponent from "./pages/ServiceBillPage";
 import PaypalSuccess from './pages/PaypalSuccess';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
                           <Route path="/saldo" element={<Saldos />} />
                           <Route path="/transacciones" element={<Transacciones />} />
                           <Route path="/datospersonales" element={<DatosPersonales />} />
+                          <Route path="/Chat" element={<Chat />} />
                         </Routes>
                       </main>
                     </BrowserRouter>
