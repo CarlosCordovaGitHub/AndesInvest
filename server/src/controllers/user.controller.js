@@ -7,7 +7,7 @@ dotenv.config();
 
 export const MONGODB_URI = process.env.MONGODB_URI;
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoClient = new MongoClient(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 export const getUserData = async (req, res) => {
   const { userId } = req.params;
