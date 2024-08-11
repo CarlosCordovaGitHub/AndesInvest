@@ -1,16 +1,12 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/index.js", "use": "@vercel/node" }
+    { "src": "*.js", "use": "@vercel/node" }
   ],
+
   "routes": [
-    { "src": "/api/auth/(.*)", "dest": "/src/routes/auth.routes.js" },
-    { "src": "/api/tasks/(.*)", "dest": "/src/routes/tasks.routes.js" },
-    { "src": "/api/accounts/(.*)", "dest": "/src/routes/account.routes.js" },
-    { "src": "/api/transfers/(.*)", "dest": "/src/routes/transfer.routes.js" },
-    { "src": "/api/service-bills/(.*)", "dest": "/src/routes/serviceBill.routes.js" },
-    { "src": "/api/users/(.*)", "dest": "/src/routes/user.routes.js" },
-    { "src": "/api/recovery/(.*)", "dest": "/src/routes/recovery.routes.js" },
-    { "src": "/(.*)", "dest": "/src/index.js" }
+    { 
+      "src": "/(.*)", 
+      "dest": "/" }
   ]
 }
