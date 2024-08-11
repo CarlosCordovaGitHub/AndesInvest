@@ -5,6 +5,8 @@ import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
+export const MONGODB_URI = process.env.MONGODB_URI;
+
 const mongoClient = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 export const getUserData = async (req, res) => {
