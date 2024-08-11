@@ -100,7 +100,7 @@ const DatosPersonales = () => {
   }
 
   return (
-    <div className="user-profile">
+    <div className="flex flex-col items-center p-8 font-sans bg-gray-100 min-h-screen">
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && (
         <div className="success-message">

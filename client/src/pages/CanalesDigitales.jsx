@@ -2,7 +2,7 @@ import React from 'react';
 
 const CanalesDigitales = () => {
     return (
-        <div>   
+        <div className="flex flex-col items-center p-8 font-sans bg-gray-100 min-h-screen">   
             <header className="page-header">
                 <h1>Redes Digitales</h1>
             </header>
@@ -38,7 +38,6 @@ const CanalesDigitales = () => {
                 <p>&copy; 2024 AndesInvest</p>
             </footer>
 
-            {/* Estilos en línea para propósitos demostrativos */}
             <style jsx>{`
                 body {
                     font-family: Arial, sans-serif;
