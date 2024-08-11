@@ -14,6 +14,7 @@ import { FRONTEND_URL } from "./config.js";
 
 const app = express();
 
+
 app.use(
   cors({
     credentials: true,
