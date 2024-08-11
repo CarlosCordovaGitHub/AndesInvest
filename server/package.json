@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --ignore client",
-    "start": "node src/index.js"
+    "start": "node src/index.js --ignore client"
   },
   "keywords": [],
   "author": "andesinvest",
