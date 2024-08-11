@@ -52,7 +52,14 @@ export function Navbar() {
               onMouseEnter={() => setIsAccountMenuOpen(true)}
               onMouseLeave={() => setIsAccountMenuOpen(false)}
             >
-              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Servicios bancarios</span>
+              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
+                <img 
+                  src="public/icono_servicios.png" 
+                  alt="Icono de Servicios Bancarios"
+                  className="h-6 w-6 sm:h-6 sm:w-6 md:h-8 md:w-8 lg:h-8 lg:w-8" 
+                />
+                <span>Servicios Bancarios</span>  
+              </span>
               {isAccountMenuOpen && (
                 <ul
                   className="absolute left-0 bg-white text-black mt-1 py-2 w-48 shadow-lg rounded-lg z-50"
@@ -82,7 +89,14 @@ export function Navbar() {
               onMouseEnter={() => setIsServicesMenuOpen(true)}
               onMouseLeave={() => setIsServicesMenuOpen(false)}
             >
-              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Pagos</span>
+              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
+                <img 
+                  src="public/icono_pagos.png" 
+                  alt="Icono de Pagos" 
+                  className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                />
+                <span>Pagos</span>
+              </span>
               {isServicesMenuOpen && (
                 <ul
                   className="absolute left-0 bg-white text-black mt-1 py-2 w-48 shadow-lg rounded-lg z-50"
@@ -100,7 +114,14 @@ export function Navbar() {
               onMouseEnter={() => setIsProfileMenuOpen(true)}
               onMouseLeave={() => setIsProfileMenuOpen(false)}
             >
-              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Perfil</span>
+              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
+                <img 
+                  src="public/icono_perfil.png" 
+                  alt="Icono de Perfil"
+                  className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" 
+                />
+                <span>Perfil</span>  
+              </span>
               {isProfileMenuOpen && (
                 <ul
                   className="absolute left-0 bg-white text-black mt-1 py-2 w-48 shadow-lg rounded-lg z-50"
@@ -124,7 +145,14 @@ export function Navbar() {
               onMouseEnter={() => setIsHelpMenuOpen(true)}
               onMouseLeave={() => setIsHelpMenuOpen(false)}
             >
-              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer">Centro de Ayuda</span>
+              <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
+                <img 
+                  src="public/icono_centro.png" 
+                  alt="Icono de Centro de Ayuda"
+                  className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" 
+                />
+                <span>Centro de Ayuda</span>  
+              </span>
               {isHelpMenuOpen && (
                 <ul
                   className="absolute left-0 bg-white text-black mt-1 py-2 w-48 shadow-lg rounded-lg z-50"
