@@ -20,20 +20,20 @@ jobs:
 
       - name: npm install, run
         run: |
-          cd server
+          cd client
           npm install
-          npm start
+          npm run dev
 
       - name: Zip artifact for deployment
         run: |
-          cd server
+          cd client
           zip -r release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: server/release.zip
+          path: client/release.zip
 
   deploy:
     runs-on: ubuntu-latest
