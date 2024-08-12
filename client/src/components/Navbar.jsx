@@ -15,7 +15,7 @@ export function Navbar() {
     <nav className="bg-blue-800 w-full my-3 flex flex-wrap items-center justify-between py-5 px-5 md:px-10 rounded-lg relative z-50">
       <div className="flex items-center space-x-4">
         <img 
-          src="public/image.png" 
+          src="/image.png" 
           alt="Logo" 
           className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 rounded-lg shadow-lg" 
         />
@@ -54,7 +54,7 @@ export function Navbar() {
             >
               <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
                 <img 
-                  src="public/icono_servicios.png" 
+                  src="/icono_servicios.png" 
                   alt="Icono de Servicios Bancarios"
                   className="h-6 w-6 sm:h-6 sm:w-6 md:h-8 md:w-8 lg:h-8 lg:w-8" 
                 />
@@ -91,7 +91,7 @@ export function Navbar() {
             >
               <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
                 <img 
-                  src="public/icono_pagos.png" 
+                  src="/icono_pagos.png" 
                   alt="Icono de Pagos" 
                   className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
                 />
@@ -116,7 +116,7 @@ export function Navbar() {
             >
               <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
                 <img 
-                  src="public/icono_perfil.png" 
+                  src="/icono_perfil.png" 
                   alt="Icono de Perfil"
                   className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" 
                 />
@@ -147,7 +147,7 @@ export function Navbar() {
             >
               <span className="hover:bg-blue-700 px-3 py-1 rounded cursor-pointer flex items-center space-x-2">
                 <img 
-                  src="public/icono_centro.png" 
+                  src="/icono_centro.png" 
                   alt="Icono de Centro de Ayuda"
                   className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" 
                 />
