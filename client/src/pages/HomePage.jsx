@@ -25,13 +25,13 @@ function HomePage() {
           </div>
         </div>
         <div className="md:w-1/2">
-          <img src="public/meetAndes.webp" alt="Tarjeta de Crédito" className="rounded-lg shadow-lg" />
+          <img src="/meetAndes.webp" alt="Tarjeta de Crédito" className="rounded-lg shadow-lg" />
         </div>
       </section>
 
       <section className="bg-white flex flex-col md:flex-row justify-center items-center py-20">
         <div className="md:w-1/2 p-10 flex justify-center">
-          <img src="public/paypal.jpg" alt="PayPal Image" className="rounded-lg shadow-lg" />
+          <img src="/paypal.jpg" alt="PayPal Image" className="rounded-lg shadow-lg" />
         </div>
         <div className="md:w-1/2 p-10">
           <h2 className="text-4xl py-2 font-bold text-gray-800">Dile hola a PayPal. Tu billetera digital segura.</h2>
@@ -55,13 +55,13 @@ function HomePage() {
           </Link>
         </div>
         <div className="md:w-1/2 p-10 flex justify-center">
-          <img src="public/techAndes.webp" alt="Bienes en venta" className="rounded-lg shadow-lg" />
+          <img src="/techAndes.webp" alt="Bienes en venta" className="rounded-lg shadow-lg" />
         </div>
       </section>
 
       <section className="bg-gray-50 flex flex-col md:flex-row justify-center items-center py-20">
         <div className="md:w-1/2 p-10">
-          <img src="public/cardAndes.webp" alt="PacificID Image" className="rounded-lg shadow-lg" />
+          <img src="/cardAndes.webp" alt="PacificID Image" className="rounded-lg shadow-lg" />
         </div>
         <div className="md:w-1/2 p-10">
           <h2 className="text-4xl py-2 font-bold text-gray-800">AndesInvest: Asistencia Personalizada en Transacciones</h2>
@@ -134,3 +134,4 @@ function HomePage() {
 }
 
 export default HomePage;
+

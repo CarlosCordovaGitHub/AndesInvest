@@ -11,7 +11,7 @@ export function TasksPage() {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", position: "relative", backgroundColor: "#d9dbd2",paddingBottom: "100px" }}>
+    <div style={{ minHeight: "100vh", position: "relative", backgroundColor: "#d9dbd2", paddingBottom: "100px" }}>
       <header style={{
         background: "linear-gradient(90deg, rgba(37,99,235,1) 0%, rgba(59,130,246,1) 50%, rgba(37,99,235,1) 100%)",
         color: "white",
@@ -42,7 +42,7 @@ export function TasksPage() {
                 boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)"
               }
             }}>
-              <img src="/public/bienvenidaAndes.jpg" alt="Banco" style={{ width: "100%", borderRadius: "10px" }} />
+              <img src="/bienvenidaAndes.jpg" alt="Banco" style={{ width: "100%", borderRadius: "10px" }} />
             </div>
           </div>
         </section>
