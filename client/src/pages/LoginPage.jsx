@@ -31,10 +31,10 @@ export function LoginPage() {
         {/* Left Section (Illustration and Security Tips) */}
         <div className="w-full max-w-lg">
           <div className="text-center mb-8">
-            <img src="../dist/log.png" alt="Security Illustration" className="mx-auto mb-4 w-1/4"/>
+            <img src="/log.png" alt="Security Illustration" className="mx-auto mb-4 w-1/4"/>
             <h2 className="text-2xl font-bold text-indigo-900">Verifica en tu navegador que estás en Banca Web.</h2>
             <div className="flex justify-center items-center mt-4">
-              <img src="./dist/login.webp" alt="Lock Icon" className="mr-2"/>
+              <img src="/login.webp" alt="Lock Icon" className="mr-2"/>
             </div>
           </div>
           <div className="text-left">
