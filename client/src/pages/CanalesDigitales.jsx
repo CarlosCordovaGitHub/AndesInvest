@@ -10,7 +10,7 @@ const CanalesDigitales = () => {
                 <section className="social-media-cards">
                     <div className="card facebook-card">
                         <div className="image-container">
-                            <img src="public/AndesinvestFacebook.webp" alt="Facebook" className="social-media-image" />
+                            <img src="/AndesinvestFacebook.webp" alt="Facebook" className="social-media-image" />
                         </div>
                         <h2>Facebook</h2>
                         <p>Únete a nuestra comunidad en Facebook y mantente actualizado con las últimas noticias y promociones.</p>
@@ -18,7 +18,7 @@ const CanalesDigitales = () => {
                     </div>
                     <div className="card instagram-card">
                         <div className="image-container">
-                            <img src="public/AndesinvestInstagram.webp" alt="Instagram" className="social-media-image" />
+                            <img src="/AndesinvestInstagram.webp" alt="Instagram" className="social-media-image" />
                         </div>
                         <h2>Instagram</h2>
                         <p>Sigue nuestro perfil de Instagram para ver fotos y videos exclusivos, y participa en nuestros concursos.</p>
@@ -26,7 +26,7 @@ const CanalesDigitales = () => {
                     </div>
                     <div className="card twitter-card">
                         <div className="image-container">
-                            <img src="public/AndesinvestTwitter.webp" alt="Twitter" className="social-media-image" />
+                            <img src="/AndesinvestTwitter.webp" alt="Twitter" className="social-media-image" />
                         </div>
                         <h2>Twitter</h2>
                         <p>Conéctate con nosotros en Twitter para recibir actualizaciones en tiempo real y unirte a la conversación.</p>
@@ -110,8 +110,6 @@ const CanalesDigitales = () => {
                 .social-media-link:hover {
                     background-color: rgba(255, 255, 255, 0.4);
                 }
-                    
-
             `}</style>
         </div>
     );
