@@ -11,19 +11,9 @@ const Saldos = () => {
   }, [fetchAccounts]);
 
   if (accounts.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="p-6 bg-white shadow-md rounded-lg text-center">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">No tiene cuentas disponibles</h2>
-          <p className="text-gray-600 mb-6">Para comenzar, por favor cree una nueva cuenta.</p>
-          <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
-            Crear Cuenta
-          </button>
-        </div>
-      </div>
-    );
+    return <p>No accounts available.</p>;
+
   }
-  
 
   const handleDelete = async (id) => {
     try {
