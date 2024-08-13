@@ -12,7 +12,6 @@ const Saldos = () => {
 
   if (accounts.length === 0) {
     return <p>No accounts available.</p>;
-
   }
 
   const handleDelete = async (id) => {
@@ -80,7 +79,7 @@ const Saldos = () => {
         <p>&copy; 2024 AndesInvest</p>
       </footer>
 
-      <style jsx>{
+      <style jsx>{`
         body {
           background-color: #FFF;
         }
@@ -123,10 +122,11 @@ const Saldos = () => {
           padding: 20px;
           background-color: #f9f9f9;
         }
-      }</style>
+      `}</style>
     </div>
   );
 };
 
 export default Saldos;
+
 
