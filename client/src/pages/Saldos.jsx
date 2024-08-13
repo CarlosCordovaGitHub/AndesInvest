@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useAccount } from '../context/accountContext';
-import { Button } from "../components/ui";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
@@ -73,7 +72,6 @@ const Saldos = () => {
                 <p className="text-gray-900">{account.accountType === 'savings' ? 'Cuenta de Ahorros' : 'Cuenta Corriente'}</p>
               </div>
             </div>
-            <Button onClick={() => handleDelete(account._id)}>Eliminar Cuenta</Button>
           </div>
         ))}
       </Carousel>
