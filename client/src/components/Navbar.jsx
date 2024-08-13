@@ -73,9 +73,6 @@ export function Navbar() {
                     <Link to="/transferencias" className="block px-4 py-2">Transferencias</Link>
                   </li>
                   <li className="hover:bg-gray-200">
-                    <Link to="/paypal" className="block px-4 py-2">Paypal</Link>
-                  </li>
-                  <li className="hover:bg-gray-200">
                     <Link to="/crearcuenta" className="block px-4 py-2">Crear cuenta</Link>
                   </li>
                   <li className="hover:bg-gray-200">
