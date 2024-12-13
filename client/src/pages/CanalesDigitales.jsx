@@ -2,40 +2,40 @@ import React from 'react';
 
 const CanalesDigitales = () => {
     return (
-        <div className="flex flex-col items-center p-8 font-sans bg-gray-100 min-h-screen">   
-            <header className="page-header">
-                <h1>Redes Digitales</h1>
+        <div className="flex flex-col items-center p-4 md:p-8 font-sans bg-gray-100 min-h-screen">   
+            <header className="page-header text-center mb-4 md:mb-8">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 border-b-4 border-red-600 inline-block pb-2">Redes Digitales</h1>
             </header>
-            <main>
-                <section className="social-media-cards">
+            <main className="w-full">
+                <section className="social-media-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <div className="card facebook-card">
                         <div className="image-container">
                             <img src="/AndesinvestFacebook.webp" alt="Facebook" className="social-media-image" />
                         </div>
-                        <h2>Facebook</h2>
-                        <p>Únete a nuestra comunidad en Facebook y mantente actualizado con las últimas noticias y promociones.</p>
+                        <h2 className="text-lg md:text-xl font-semibold">Facebook</h2>
+                        <p className="text-sm md:text-base">Únete a nuestra comunidad en Facebook y mantente actualizado con las últimas noticias y promociones.</p>
                         <a href="https://www.facebook.com/tu_pagina" className="social-media-link" target="_blank" rel="noopener noreferrer">Síguenos en Facebook</a>
                     </div>
                     <div className="card instagram-card">
                         <div className="image-container">
                             <img src="/AndesinvestInstagram.webp" alt="Instagram" className="social-media-image" />
                         </div>
-                        <h2>Instagram</h2>
-                        <p>Sigue nuestro perfil de Instagram para ver fotos y videos exclusivos, y participa en nuestros concursos.</p>
+                        <h2 className="text-lg md:text-xl font-semibold">Instagram</h2>
+                        <p className="text-sm md:text-base">Sigue nuestro perfil de Instagram para ver fotos y videos exclusivos, y participa en nuestros concursos.</p>
                         <a href="https://www.instagram.com/tu_pagina" className="social-media-link" target="_blank" rel="noopener noreferrer">Síguenos en Instagram</a>
                     </div>
                     <div className="card twitter-card">
                         <div className="image-container">
                             <img src="/AndesinvestTwitter.webp" alt="Twitter" className="social-media-image" />
                         </div>
-                        <h2>Twitter</h2>
-                        <p>Conéctate con nosotros en Twitter para recibir actualizaciones en tiempo real y unirte a la conversación.</p>
+                        <h2 className="text-lg md:text-xl font-semibold">Twitter</h2>
+                        <p className="text-sm md:text-base">Conéctate con nosotros en Twitter para recibir actualizaciones en tiempo real y unirte a la conversación.</p>
                         <a href="https://www.twitter.com/tu_pagina" className="social-media-link" target="_blank" rel="noopener noreferrer">Síguenos en Twitter</a>
                     </div>
                 </section>
             </main>
-            <footer>
-                <p>&copy; 2024 AndesInvest</p>
+            <footer className="mt-8">
+                <p className="text-gray-600">&copy; 2024 AndesInvest</p>
             </footer>
 
             <style jsx>{`
@@ -43,29 +43,15 @@ const CanalesDigitales = () => {
                     font-family: Arial, sans-serif;
                     background-color: #FFF; /* Fondo gris claro */
                 }
-                .page-header {
-                    text-align: center;
-                    margin: 20px 0;
-                }
                 .page-header h1 {
-                    font-size: 3em;
                     color: #003366; /* Azul oscuro del logo EPN */
                     text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-                    border-bottom: 2px solid #d32f2f; /* Rojo del logo EPN */
-                    padding-bottom: 10px;
-                    display: inline-block;
-                }
-                .social-media-cards {
-                    display: flex;
-                    justify-content: space-around;
-                    margin: 20px 0;
                 }
                 .card {
                     border-radius: 10px;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                     overflow: hidden;
                     text-align: center;
-                    width: 30%;
                     padding: 20px;
                     background-color: white;
                     transition: transform 0.3s;
@@ -75,7 +61,7 @@ const CanalesDigitales = () => {
                 }
                 .image-container {
                     width: 100%;
-                    height: 200px;
+                    height: 150px;
                     overflow: hidden;
                     border-bottom: 1px solid #eee;
                     margin-bottom: 15px;
